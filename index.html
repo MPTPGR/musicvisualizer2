@@ -1,0 +1,72 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..a69c7d1cec84728ff534fd41e23b4375c37aa315
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,62 @@
++<!doctype html>
++<html lang="en">
++  <head>
++    <meta charset="UTF-8" />
++    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++    <title>Mandala Music Visualizer</title>
++    <link rel="stylesheet" href="styles.css" />
++  </head>
++  <body>
++    <main class="app">
++      <section class="controls">
++        <h1>Mandala Psychedelic Music Visualizer</h1>
++        <p>
++          Load local audio or download from a direct audio URL, then press Play to generate
++          responsive visuals.
++        </p>
++
++        <div class="control-row">
++          <label for="audioFile">Upload music</label>
++          <input id="audioFile" type="file" accept="audio/*" />
++        </div>
++
++        <div class="control-row">
++          <label for="audioUrl">Audio URL</label>
++          <input id="audioUrl" type="url" placeholder="https://example.com/song.mp3" />
++          <button id="downloadBtn" type="button">Download &amp; Load</button>
++        </div>
++
++        <div class="control-row">
++          <label for="visualMode">Imagery mode</label>
++          <select id="visualMode">
++            <option value="mandala">Mandala Bloom</option>
++            <option value="kaleidoscope">Kaleidoscope Rings</option>
++            <option value="wavefield">Psychedelic Wavefield</option>
++          </select>
++        </div>
++
++        <div class="control-row">
++          <label for="sensitivity">Sensitivity</label>
++          <input id="sensitivity" type="range" min="0.5" max="3" step="0.1" value="1.4" />
++          <output id="sensitivityValue">1.4×</output>
++        </div>
++
++        <div class="control-row actions">
++          <button id="playBtn" type="button">Play</button>
++          <button id="pauseBtn" type="button">Pause</button>
++          <a id="saveLink" download="downloaded-audio" hidden>Save downloaded file</a>
++        </div>
++
++        <p id="status" class="status">Ready.</p>
++
++        <audio id="audio" controls crossorigin="anonymous"></audio>
++      </section>
++
++      <section class="canvas-wrap">
++        <canvas id="visualizer" width="1200" height="800"></canvas>
++      </section>
++    </main>
++
++    <script src="script.js"></script>
++  </body>
++</html>
+ 
+EOF
+)
